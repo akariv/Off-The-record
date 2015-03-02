@@ -1,0 +1,62 @@
+[
+    [
+        "156632191145120", 
+        {
+            "amount": 106, 
+            "wordsArray": [
+                [
+                    "\u05e2\u05d6\u05d4", 
+                    46
+                ], 
+                [
+                    "\u05e9\u05dc\u05d5\u05dd", 
+                    22
+                ], 
+                [
+                    "\u05d1\u05d9\u05d8\u05d7\u05d5\u05df", 
+                    18
+                ]
+            ]
+        }
+    ], 
+    [
+        "tamarzandberg", 
+        {
+            "amount": 77, 
+            "wordsArray": [
+                [
+                    "\u05e9\u05dc\u05d5\u05dd", 
+                    34
+                ], 
+                [
+                    "\u05e2\u05d6\u05d4", 
+                    9
+                ], 
+                [
+                    "\u05de\u05dc\u05d7\u05de\u05d4", 
+                    8
+                ]
+            ]
+        }
+    ],
+    [
+        "AviDichter1", 
+        {
+            "amount": 73, 
+            "wordsArray": [
+                [
+                    "\u05e9\u05dc\u05d5\u05dd", 
+                    25
+                ], 
+                [
+                    "\u05e2\u05d6\u05d4", 
+                    18
+                ], 
+                [
+                    "\u05e6\u05d4\u05f4\u05dc", 
+                    10
+                ]
+            ]
+        }
+    ]
+]

@@ -1,0 +1,14 @@
+[
+    [
+        "ShellyYachimovich", 
+        1207198
+    ], 
+    [
+        "zehavagalon", 
+        1113271
+    ], 
+    [
+        "NaftaliBennett", 
+        1031535
+    ]
+]
