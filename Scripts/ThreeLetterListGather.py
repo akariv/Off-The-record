@@ -11,7 +11,10 @@ __author__ = 'AlexGruber'
 
 word = "סתם";
 alpha = u"א", u"ב", u"ג", u"ד", u"ה", u"ו", u"ז", u"ח", u"ט", u"י", u"כ", u"ל", u"מ", u"נ", u"ס", u"ע", u"פ", u"צ", u"ק", u"ר", u"ש", u"ת", u"ץ", u"ך", u"ם", u"ן"
-path = "c:\\testFolder\\"
+path = "testFolder"
+mergedJspnPath= "pythonfiles"
+rootPath = "c:/"
+
 poli = [line.strip() for line in open(os.path.dirname(os.path.abspath(__file__)) + '\potilics.txt')]
 
 for num in range(0,22):
@@ -20,12 +23,13 @@ for num in range(0,22):
             word=""
             word = alpha[num] + alpha[num2] + alpha[num3]
             # print word
-            newpath = "c:\\pythonfiles\\" + word + ".txt"
+            newpath = os.path.join(rootPath, mergedJspnPath,  word + ".txt")
+            print newpath
             fileOpenWrite = open(newpath,'a')
             count = 0
             fileOpenWrite.write("[")
             for i in range(0, len(poli)):
-                temppath = path + poli[i] + "\\" + word + ".txt"
+                temppath = os.path.join(rootPath,path + poli[i], word + ".txt")
                 if os.path.exists(temppath):
                     if count == 0 :
                         fileOpenWrite.write("{\"id\":\"" + poli[i] + "\",\"resarr\":")

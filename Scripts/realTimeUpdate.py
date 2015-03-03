@@ -9,6 +9,11 @@ import sys, os
 import codecs
 __author__ = 'AlexGruber'
 
+threeLetterWordsPath = 'testFolder'
+perDateCountPath = 'WholeDates'
+allWordsPath = 'wordAllCount'
+rootPath = "c:/"
+
 wordCountPerPolitics = collections.defaultdict(int)
 wordIdPerPolitics = collections.defaultdict(list)
 politicsDictWords = collections.defaultdict(dict)
@@ -177,7 +182,7 @@ def AllwordCounter(politicFileName):
                     splitAllWordsByThreeLetters(threeLetterList, word, count, wordIdPerPolitics[word], politic, threeLetterDict, wordIdPerPolitics[word], dateDictForThreeLetter[word])
                     tempJson[politicFileName].append(wordIdPerPolitics[word])
     # printToJsonTempDict(threeLetterDict, politicFileName)
-    with open('c:\\wordAllCount\\' + politicFileName + '.txt', 'w') as outfile:
+    with open(os.path.join(rootPath,allWordsPath, politicFileName + '.txt'), 'w') as outfile:
          json.dump(tempJson, outfile, indent=4)
     print "finished counting " + politicFileName
     wordIdPerPolitics.clear()
@@ -195,9 +200,9 @@ def splitAllWordsByThreeLetters(listOfThreeLetters, word, count, wordIds, folder
 def printToJsonTempDict(tempDictJson, folderName):
     for keyDict, valueDict in tempDictJson.iteritems() :
         # print keyDict , valueDict
-        newpath = r'c:\\testFolder\\' + folderName
+        newpath = os.path.join(rootPath,threeLetterWordsPath, folderName)
         if not os.path.exists(newpath): os.makedirs(newpath)
-        with open('c:\\testFolder\\' + folderName + '\\' + keyDict + '.txt', 'a') as outfile:
+        with open(os.path.join(rootPath,threeLetterWordsPath,folderName, keyDict + '.txt'), 'a') as outfile:
              json.dump(tempDictJson[keyDict], outfile, indent=4)
     tempDictJson.clear()
 
@@ -216,7 +221,7 @@ for politic in politicsArr:
         # print word[0][0]['Word'][:3]
         # print word[0][0]['Array_id']
 
-        path = "C:\\testFolder\\" + politic + "\\" + word[0][0]['Word'][:3] + ".txt"
+        path = os.path.join(rootPath,threeLetterWordsPath, politic, word[0][0]['Word'][:3] + ".txt")
         if os.path.exists(path):
             with open(path, "r") as jsonFile:
                 jsonToUpdate = json.load(jsonFile)

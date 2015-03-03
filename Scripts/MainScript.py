@@ -9,6 +9,12 @@ import sys, os
 import codecs
 __author__ = 'AlexGruber'
 
+perDateCountPath = 'WholeDates'
+allWordsPath = 'wordAllCount'
+threeLetterWordsPath = 'testFolder'
+listOfCheckedWordsPath = "WCheckedList"
+rootPath = "c:/"
+
 wordCountPerPolitics = collections.defaultdict(int)
 wordIdPerPolitics = collections.defaultdict(list)
 politicsDictWords = collections.defaultdict(dict)
@@ -165,28 +171,15 @@ def perDateCount(politicFileName):
                 # else:
                 #     print "not accpted ", word
         else:
-                print tempDate
-                # tempJson = {tempDate:[],}
-                # tempJson["Dates"].append({tempDate:[]})
+                # print tempDate
                 JsonTempDate = tempDate
                 tempDate = Constdate
                 mostCommon = Counter(tempBuildString).most_common(10)
                 printHeb = dict(mostCommon)
                 sorted_x = sorted(printHeb.items(), key = operator.itemgetter(1), reverse=True)
                 for key, value in sorted_x:
-                      # print key, value
-                      # tempJson[JsonTempDate].append({key : value})
                       if wordIdDict.has_key(key):
-                         # print list(set(wordIdDict[key]))
-                         # tempJson[JsonTempDate].append(list(set(wordIdDict[key])))
                          obj.append({"Word" : key ,"Amount" : str(value), "array_id" : list(set(wordIdDict[key]))})
-                         # tempJson["Dates"].insert(len(tempJson["Dates"]) -1, obj)
-                         # tempJson["Dates"][len(tempJson["Dates"]) -1].append(obj)
-                         # obj = []
-                # with open('c:\\' + politicFileName + '.txt', 'a') as outfile:
-                #         json.dump(tempJson, outfile, indent=4)
-                # print tempJson
-                # tempJson["Dates"].append({tempDate:[obj]})
                 tempJson["Dates"][JsonTempDate]=[obj]
                 obj=[]
                 del tempBuildString[:]
@@ -194,7 +187,8 @@ def perDateCount(politicFileName):
                 del tempWordsList[:]
                 wordIdDict.clear()
 
-    with open('c:\\WholeDates\\' + politicFileName + '.txt', 'w') as outfile:
+    # with open(perDateCountPath + '\\' + politicFileName + '.txt', 'w') as outfile:
+    with open(os.path.join(rootPath, perDateCountPath, politicFileName + '.txt') , 'w') as outfile:
                         json.dump(tempJson, outfile, indent=4)
     tempJson.clear()
     dateDict.clear()
@@ -243,7 +237,8 @@ def AllwordCounter(wordsList, politicFileName):
                     splitAllWordsByThreeLetters(threeLetterList, word, count, wordIdPerPolitics[word], politic, threeLetterDict, wordIdPerPolitics[word], dateDictForThreeLetter[word])
                     tempJson[politicFileName].append(wordIdPerPolitics[word])
     printToJsonTempDict(threeLetterDict, politicFileName)
-    with open('c:\\wordAllCount\\' + politicFileName + '.txt', 'w') as outfile:
+    # with open(allWordsPath + '\\' + politicFileName + '.txt', 'w') as outfile:
+    with open(os.path.join(rootPath, allWordsPath,  politicFileName + '.txt'), 'w') as outfile:
          json.dump(tempJson, outfile, indent=4)
     print "finished counting " + politicFileName
     wordIdPerPolitics.clear()
@@ -322,9 +317,9 @@ def splitAllWordsByThreeLetters(listOfThreeLetters, word, count, wordIds, folder
 def printToJsonTempDict(tempDictJson, folderName):
     for keyDict, valueDict in tempDictJson.iteritems() :
         # print keyDict , valueDict
-        newpath = r'c:\\testFolder\\' + folderName
+        newpath = os.path.join(rootPath,threeLetterWordsPath,folderName)
         if not os.path.exists(newpath): os.makedirs(newpath)
-        with open('c:\\testFolder\\' + folderName + '\\' + keyDict + '.txt', 'a') as outfile:
+        with open(os.path.join(rootPath, threeLetterWordsPath, folderName, keyDict + '.txt'), 'a') as outfile:
              json.dump(tempDictJson[keyDict], outfile, indent=4)
     tempDictJson.clear()
 
@@ -332,7 +327,7 @@ def sortAndPrintMilitaryCount():
 
     sorted_politicDictMilitaryCount = sorted(politicDictMilitaryCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open('c:\\militaryCountRecords_1.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords_1.txt"), 'a') as outfile:
          json.dump(sorted_politicDictMilitaryCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -340,13 +335,13 @@ def sortAndPrintMilitaryCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictMilitaryCount[index][0]] = sorted_politicDictMilitaryCount[index][1]
 
-    with open('c:\\militaryCountRecords.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords.txt"), 'a') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintSahbekimCount():
     sorted_politicDictSahbekimCount = sorted(politicDictSahbekimCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open('c:\\SahbekimCountRecords_1.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords_1.txt"), 'a') as outfile:
         json.dump(sorted_politicDictSahbekimCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -354,7 +349,7 @@ def sortAndPrintSahbekimCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictSahbekimCount[index][0]] = sorted_politicDictSahbekimCount[index][1]
 
-    with open('c:\\SahbekimCountRecords.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords.txt"), 'a') as outfile:
         json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintNarcistCount():
@@ -365,13 +360,13 @@ def sortAndPrintNarcistCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictNarcistCount[index][0]] = sorted_politicDictNarcistCount[index][1]
 
-    with open('c:\\narcistCountRecords.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "narcistCountRecords.txt"), 'a') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintKalkalaCount():
     sorted_politicDictKalkalaCount = sorted(politicDictKalkalaCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open('c:\\kalkalaCountRecords_1.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"kalkalaCountRecords_1.txt"), 'a') as outfile:
          json.dump(sorted_politicDictKalkalaCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -379,7 +374,7 @@ def sortAndPrintKalkalaCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictKalkalaCount[index][0]] = sorted_politicDictKalkalaCount[index][1]
 
-    with open('c:\\kalkalaCountRecords.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "kalkalaCountRecords.txt"), 'a') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintWordCount():
@@ -389,7 +384,7 @@ def sortAndPrintWordCount():
 
     for index in range(3):
         tempPrintJson[sorted_politicDictWordsCount[index][0]] = sorted_politicDictWordsCount[index][1]
-    with open('c:\\wordsCountRecords.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "wordsCountRecords.txt"), 'a') as outfile:
           json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintRahlanCount():
@@ -399,7 +394,7 @@ def sortAndPrintRahlanCount():
 
     for index in range(3):
         tempPrintJson[sorted_politicDictRahlanCount[index][0]] = sorted_politicDictRahlanCount[index][1]
-    with open('c:\\rahlanCountRecords.txt', 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "rahlanCountRecords.txt"), 'a') as outfile:
           json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 
@@ -431,27 +426,6 @@ for word in gutlist:
         politicByWordsGut.append(cut)
 
 
-# for politic in politicsArr:
-#      url = "https://graph.facebook.com/" + politic + "?fields=name"
-#      response = urllib.urlopen(url)
-#      data = json.loads(response.read())
-#      try:
-#         politicCheckListArray.append(data["name"].split())
-#         for words in politicCheckListArray:
-#             for word in words:
-#                 politicByWords.append(word)
-#                 print word, len(politicByWords)
-#         politicCheckListArray=[]
-#         politicByWords=[]
-#      except:
-#          errorCount= 1
-#
-
-# for words in politicCheckListArray:
-#     for word in words:
-#         politicByWords.append(word)
-#         print word
-
 for politic in politicsArr:
     url = "https://graph.facebook.com/" + politic + "?fields=posts.limit(200)%7Bmessage%7D&access_token=1719315164960950%7CnKFpk2SebwixsCQS3y7zQDPA1Ow"
     response = urllib.urlopen(url)
@@ -476,17 +450,17 @@ for politic in politicsArr:
         allPostsIDsDict ={}
         buildString = createBuffer_Posts(url)
 
-        getTargetIds(data["posts"]["paging"]["next"], list_NextUrls)
-
-        for url in list_NextUrls:
-           buildString += createBuffer_Next(url)
+        # getTargetIds(data["posts"]["paging"]["next"], list_NextUrls)
+        #
+        # for url in list_NextUrls:
+        #    buildString += createBuffer_Next(url)
 
         print "ALL ID's in the allPostIDsDict :  " , len(allPostsIDsDict.keys())
 
         politicDictWordsCount[politic] = len(buildString)
         AllwordCounter(buildString, politic)
-        # perDateCount(politic)
-        # CheckWordsAgainstThelist(buildString, politic)
+        perDateCount(politic)
+        CheckWordsAgainstThelist(buildString, politic)
 
         politicCheckListArray=[]
         politicByWords=[]
@@ -497,12 +471,12 @@ for politic in politicsArr:
         print "Unexpected error:" , sys.exc_info()[0]
 
 
-# sortAndPrintMilitaryCount()
-# sortAndPrintSahbekimCount()
-# sortAndPrintNarcistCount()
-# sortAndPrintKalkalaCount()
-# sortAndPrintWordCount()
-# sortAndPrintRahlanCount()
+sortAndPrintMilitaryCount()
+sortAndPrintSahbekimCount()
+sortAndPrintNarcistCount()
+sortAndPrintKalkalaCount()
+sortAndPrintWordCount()
+sortAndPrintRahlanCount()
 
 
 
