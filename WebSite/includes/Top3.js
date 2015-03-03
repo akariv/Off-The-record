@@ -614,11 +614,11 @@ $(function(){
 				first3 = "2";
 			}
 			$.ajax({
-				//url:domain + 'json1/'+ value.id +'/' + first3 + '.txt',
-				url:domain + 'myphp.php',
+				url:domain + 'json3/' + first3 + '.txt',
+				//url:domain + 'myphp.php',
 				dataType: 'json',
 				type: 'get',
-				data:{word:first3},
+				//data:{word:first3},
 				success:  function(data){
 					//console.log(data);
 					for(var i=0; i<data.length; i++){
