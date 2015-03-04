@@ -58,4 +58,3 @@ for num in range(0,22):
                         fileOpenWrite.write(line)
                     fileOpenWrite.write('}')
             fileOpenWrite.write(']')
-print "DONE"
