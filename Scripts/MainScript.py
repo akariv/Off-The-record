@@ -11,9 +11,9 @@ __author__ = 'AlexGruber'
 
 perDateCountPath = 'WholeDates'
 allWordsPath = 'wordAllCount'
-threeLetterWordsPath = 'testFolder'
+threeLetterWordsPath = '../testFolder'
 listOfCheckedWordsPath = "WCheckedList"
-rootPath = "c:/"
+rootPath = "out"
 
 politicsFile = '\ThreeLetterWords.txt'
 
@@ -138,7 +138,7 @@ def perDateCount(politicFileName):
 
     tempJson = {"Dates" :{}}
     for date, msg in dateDict.iteritems() :
-        print date
+        #print date
         Constdate = date.split("T")[0].split('-')[0] + ":" + date.split("T")[0].split('-')[1]
         if runOnce == True:
             tempDate = Constdate
@@ -321,6 +321,7 @@ def splitAllWordsByThreeLetters(listOfThreeLetters, word, count, wordIds, folder
                tempDictJson[word[:3]].append([{"Word" : word ,"Amount" : str(count),"date" : date.split('+')[0], "Array_id" : ids}])
         except:
             print "Unexpected error:" , sys.exc_info()[0]
+            raise
     else:
         tempDictJson["2"].append([{"Word" : word ,"Amount" : str(count),"date" : date.split('+')[0], "Array_id" : ids}])
 
@@ -408,7 +409,7 @@ def sortAndPrintRahlanCount():
           json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 
-print os.path.dirname(os.path.abspath(__file__)) + '\potilics.txt'
+print os.path.dirname(os.path.abspath(__file__)) + '/potilics.txt'
 politicByWords=[]
 politicCheckListArray = []
 gutlist = []
@@ -455,8 +456,9 @@ for politic in politicsArr:
         except:
             # errorCount=
             print "Unexpected error:" , sys.exc_info()[0]
+            continue
 
-        print data["posts"]["paging"]["next"]
+        print "next:",data["posts"]["paging"]["next"]
         allPostsIDsDict ={}
         buildString = createBuffer_Posts(url)
 
@@ -474,8 +476,8 @@ for politic in politicsArr:
 
         politicCheckListArray=[]
         politicByWords=[]
-        del list_NextUrls[:]
-        del buildString[:]
+        list_NextUrls = []
+        buildString = []
     except:
         print politic
         print "Unexpected error:" , sys.exc_info()[0]
