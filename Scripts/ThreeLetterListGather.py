@@ -19,7 +19,7 @@ poli = [line.strip() for line in open(os.path.join(os.path.dirname(os.path.abspa
 
 for num in range(0,22):
     for num2 in range(0,22):
-        for num3 in range(0, 23):
+        for num3 in range(0, 26):
             word=""
             word = alpha[num] + alpha[num2] + alpha[num3]
             # print word
