@@ -48,7 +48,7 @@ threeLetterDict = collections.defaultdict(list)
 dateDictForThreeLetter = {}
 
 avoidWords = [u'ישראל', u'כל', u'את', u'של', u'זה', u'על', u'או', u'גם', u'אז', u'רק', 'and', 'the', 'of', u'עד', u'אשר', u'כי', u'אם', \
-'in', 'to', 'a', 'that' ,'is', 'for', 'with', 'are', 'this', 'have', 'The', 'on', u'-', 'it', 'from', 'a' , \
+'in', 'to', 'w', 'that' ,'is', 'for', 'with', 'are', 'this', 'have', 'The', 'on', u'-', 'it', 'from', 'a' , \
 'at', 'as', u'היא', u'אני', u'לא', u'עם', u'הוא', u'•', u'(', u')', u' ', u'', u"" , "", " " \
 u':', u'"', u',' ,u'–', u'?', u'!', u'.', u'**', u'***', u'*']
 
@@ -330,7 +330,7 @@ def printToJsonTempDict(tempDictJson, folderName):
         # print keyDict , valueDict
         newpath = os.path.join(rootPath,threeLetterWordsPath,folderName)
         if not os.path.exists(newpath): os.makedirs(newpath)
-        with open(os.path.join(rootPath, threeLetterWordsPath, folderName, keyDict + '.txt'), 'a') as outfile:
+        with open(os.path.join(rootPath, threeLetterWordsPath, folderName, keyDict + '.txt'), 'w') as outfile:
              json.dump(tempDictJson[keyDict], outfile, indent=4)
     tempDictJson.clear()
 
@@ -338,7 +338,7 @@ def sortAndPrintMilitaryCount():
 
     sorted_politicDictMilitaryCount = sorted(politicDictMilitaryCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords_1.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords_1.txt"), 'w') as outfile:
          json.dump(sorted_politicDictMilitaryCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -346,13 +346,13 @@ def sortAndPrintMilitaryCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictMilitaryCount[index][0]] = sorted_politicDictMilitaryCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords.txt"), 'w') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintSahbekimCount():
     sorted_politicDictSahbekimCount = sorted(politicDictSahbekimCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords_1.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords_1.txt"), 'w') as outfile:
         json.dump(sorted_politicDictSahbekimCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -360,7 +360,7 @@ def sortAndPrintSahbekimCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictSahbekimCount[index][0]] = sorted_politicDictSahbekimCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords.txt"), 'w') as outfile:
         json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintNarcistCount():
@@ -371,13 +371,13 @@ def sortAndPrintNarcistCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictNarcistCount[index][0]] = sorted_politicDictNarcistCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "narcistCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "narcistCountRecords.txt"), 'w') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintKalkalaCount():
     sorted_politicDictKalkalaCount = sorted(politicDictKalkalaCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath,"kalkalaCountRecords_1.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"kalkalaCountRecords_1.txt"), 'w') as outfile:
          json.dump(sorted_politicDictKalkalaCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -385,7 +385,7 @@ def sortAndPrintKalkalaCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictKalkalaCount[index][0]] = sorted_politicDictKalkalaCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "kalkalaCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "kalkalaCountRecords.txt"), 'w') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintWordCount():
@@ -395,7 +395,7 @@ def sortAndPrintWordCount():
 
     for index in range(3):
         tempPrintJson[sorted_politicDictWordsCount[index][0]] = sorted_politicDictWordsCount[index][1]
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "wordsCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "wordsCountRecords.txt"), 'w') as outfile:
           json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintRahlanCount():
@@ -405,7 +405,7 @@ def sortAndPrintRahlanCount():
 
     for index in range(3):
         tempPrintJson[sorted_politicDictRahlanCount[index][0]] = sorted_politicDictRahlanCount[index][1]
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "rahlanCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "rahlanCountRecords.txt"), 'w') as outfile:
           json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 
