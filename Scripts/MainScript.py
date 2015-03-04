@@ -15,6 +15,8 @@ threeLetterWordsPath = 'testFolder'
 listOfCheckedWordsPath = "WCheckedList"
 rootPath = "c:/"
 
+politicsFile = '\ThreeLetterWords.txt'
+
 wordCountPerPolitics = collections.defaultdict(int)
 wordIdPerPolitics = collections.defaultdict(list)
 politicsDictWords = collections.defaultdict(dict)
@@ -404,11 +406,11 @@ politicCheckListArray = []
 gutlist = []
 politicByWordsGut = []
 
-politicsArr = [line.strip() for line in open(os.path.dirname(os.path.abspath(__file__)) + '\potilics.txt')]
-threeLetterWords = [line.strip() for line in open(os.path.dirname(os.path.abspath(__file__)) + '\ThreeLetterWords.txt')]
+politicsArr = [line.strip() for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'potilics.txt'))]
+threeLetterWords = [line.strip() for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ThreeLetterWords.txt'))]
 
-f = codecs.open(os.path.dirname(os.path.abspath(__file__)) + '\ThreeLetterWords.txt', "r", "utf-8")
-p = codecs.open(os.path.dirname(os.path.abspath(__file__)) + '\politicsName.txt', "r", "utf-8")
+f = codecs.open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ThreeLetterWords.txt'), "r", "utf-8")
+p = codecs.open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'politicsName.txt'), "r", "utf-8")
 
 for words in f.readlines():
     testlist.append(words.split())
@@ -450,10 +452,10 @@ for politic in politicsArr:
         allPostsIDsDict ={}
         buildString = createBuffer_Posts(url)
 
-        # getTargetIds(data["posts"]["paging"]["next"], list_NextUrls)
-        #
-        # for url in list_NextUrls:
-        #    buildString += createBuffer_Next(url)
+        getTargetIds(data["posts"]["paging"]["next"], list_NextUrls)
+
+        for url in list_NextUrls:
+           buildString += createBuffer_Next(url)
 
         print "ALL ID's in the allPostIDsDict :  " , len(allPostsIDsDict.keys())
 

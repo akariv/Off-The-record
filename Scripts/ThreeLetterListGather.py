@@ -15,7 +15,7 @@ path = "testFolder"
 mergedJspnPath= "pythonfiles"
 rootPath = "c:/"
 
-poli = [line.strip() for line in open(os.path.dirname(os.path.abspath(__file__)) + '\potilics.txt')]
+poli = [line.strip() for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'potilics.txt'))]
 
 for num in range(0,22):
     for num2 in range(0,22):

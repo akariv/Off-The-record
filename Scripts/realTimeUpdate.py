@@ -209,7 +209,7 @@ def printToJsonTempDict(tempDictJson, folderName):
 
 tempNewWordsDict = {}
 
-politicsArr = [line.strip() for line in open(os.path.dirname(os.path.abspath(__file__)) + '\potilics.txt')]
+politicsArr = [line.strip() for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'potilics.txt'))]
 
 for politic in politicsArr:
     url = "https://graph.facebook.com/" + politic + "?fields=posts.limit(200)%7Bmessage%7D&access_token=1719315164960950%7CnKFpk2SebwixsCQS3y7zQDPA1Ow"
