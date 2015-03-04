@@ -163,7 +163,7 @@ def AllwordCounter(politicFileName):
                 word = word.replace(u'(', u"")
                 word = word.replace(u')', u"")
                 word = word.replace(u'*', u"")
-                word = word.replace(u'\'', u"")
+                # word = word.replace(u'\'', u"")
                 wordCountPerPolitics[word] += 1
                 wordIdPerPolitics[word].append(keyDict)
                 dateDictForThreeLetter[word] = valueDict[1]

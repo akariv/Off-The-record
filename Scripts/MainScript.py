@@ -151,16 +151,16 @@ def perDateCount(politicFileName):
 
             for word in tempWordsList:
                 # if not word in avoidWords:
-                word = word.replace(u'.', u"")
-                word = word.replace(u'!', u"")
-                word = word.replace(u'?', u"")
-                word = word.replace(u'-', u"")
-                word = word.replace(u',', u"")
-                word = word.replace(u'"', u"")
-                word = word.replace(u':', u"")
-                word = word.replace(u'(', u"")
-                word = word.replace(u')', u"")
-                word = word.replace(u'*', u"")
+                # word = word.replace(u'.', u"")
+                # word = word.replace(u'!', u"")
+                # word = word.replace(u'?', u"")
+                # word = word.replace(u'-', u"")
+                # word = word.replace(u',', u"")
+                # # word = word.replace(u'"', u"")
+                # word = word.replace(u':', u"")
+                # word = word.replace(u'(', u"")
+                # word = word.replace(u')', u"")
+                # word = word.replace(u'*', u"")
 
                 if not word in avoidWords:
                      # print "accpted ", word
@@ -210,17 +210,17 @@ def AllwordCounter(wordsList, politicFileName):
         id = []
         for word in tempWordsList:
             if not word in avoidWords:
-                word = word.replace(u'.', u"")
-                word = word.replace(u'!', u"")
-                word = word.replace(u'?', u"")
-                word = word.replace(u'-', u"")
-                word = word.replace(u',', u"")
-                word = word.replace(u'"', u"")
-                word = word.replace(u':', u"")
-                word = word.replace(u'(', u"")
-                word = word.replace(u')', u"")
-                word = word.replace(u'*', u"")
-                word = word.replace(u'\'', u"")
+                # word = word.replace(u'.', u"")
+                # word = word.replace(u'!', u"")
+                # word = word.replace(u'?', u"")
+                # word = word.replace(u'-', u"")
+                # word = word.replace(u',', u"")
+                # word = word.replace(u'"', u"")
+                # word = word.replace(u':', u"")
+                # word = word.replace(u'(', u"")
+                # word = word.replace(u')', u"")
+                # word = word.replace(u'*', u"")
+                # word = word.replace(u'\'', u"")
                 wordCountPerPolitics[word] += 1
                 wordIdPerPolitics[word].append(keyDict)
                 dateDictForThreeLetter[word] = valueDict[1]
@@ -269,8 +269,16 @@ def CheckWordsAgainstThelist(wordsList, politicFileName):
 
         for checkWord in tempWordsList:
             if not checkWord in avoidWords:
-                checkWord = checkWord.replace('.', "")
-                checkWord = checkWord.replace(',', "")
+                checkWord = checkWord.replace(u'.', u"")
+                checkWord = checkWord.replace(u'!', u"")
+                checkWord = checkWord.replace(u'?', u"")
+                checkWord = checkWord.replace(u'-', u"")
+                checkWord = checkWord.replace(u',', u"")
+                checkWord = checkWord.replace(u'"', u"")
+                checkWord = checkWord.replace(u':', u"")
+                checkWord = checkWord.replace(u'(', u"")
+                checkWord = checkWord.replace(u')', u"")
+                checkWord = checkWord.replace(u'*', u"")
 
                 if checkWord in militaryWords:
                         countMilitaryWords+=1

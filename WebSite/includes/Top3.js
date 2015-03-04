@@ -347,14 +347,6 @@ var poli_json = {
             "id": "625040900863570",
         },
         {
-        	"name": "בצלאל סמוטריץ",
-            "id": "Bezazelsmotrich",
-        },
-        {
-        	"name": "ניר אורבך",
-            "id": "639391266187801",
-        },
-        {
         	"name": "יוני שטבון",
             "id": "318718848205174",
         },
@@ -519,6 +511,7 @@ $(document).ready(function(){
 	$.each(json.array, function(i,v){
 		var temp = domain + 'WCheckedList/' + v.file;
 		$.ajax({
+			
 			url:temp,
 			dataType: 'json',
 			type: 'get',
@@ -531,8 +524,13 @@ $(document).ready(function(){
 						$('#sec' + (start+index)).css('background-image','url("https://graph.facebook.com/'+ data[index][0] +'/picture?type=large")');
 						var res = $('#sec' + (start+index)).siblings('.results');
 						//console.log(res);
+						
+						
 						if (i != 2){
-							$(res).append('<div>' + data[index][1].wordsArray[0][0] + '</div><div>' + data[index][1].wordsArray[1][0] + '</div><div>' + data[index][1].wordsArray[2][0] + '</div>');
+							for(var k=0; k<data[index][1].wordsArray.length; k++){
+								$(res).append('<div>' + data[index][1].wordsArray[k][0] + '</div>');
+							}
+							//$(res).append('<div>' + data[index][1].wordsArray[0][0] + '</div><div>' + data[index][1].wordsArray[1][0] + '</div><div>' + data[index][1].wordsArray[2][0] + '</div>');
 						}
 						$.each(poli_json.people, function(i2,v2){
 							if (v2.id==data[index][0]){
@@ -549,7 +547,10 @@ $(document).ready(function(){
 							}
 						});
 						var res = $('#sec' + (start+index)).siblings('.results');
-						$(res).append('<div>' + data[index][1].wordsArray[0][0] + '</div><div>' + data[index][1].wordsArray[1][0] + '</div><div>' + data[index][1].wordsArray[2][0] + '</div>');
+						for(var k=0; k<data[index][1].wordsArray.length; k++){
+							$(res).append('<div>' + data[index][1].wordsArray[k][0] + '</div>');
+						}
+						//$(res).append('<div>' + data[index][1].wordsArray[0][0] + '</div><div>' + data[index][1].wordsArray[1][0] + '</div><div>' + data[index][1].wordsArray[2][0] + '</div>');
 					
 					
 					}else{
@@ -614,6 +615,7 @@ $(function(){
 				first3 = "2";
 			}
 			$.ajax({
+				//crossDomain: true,
 				url:domain + 'pythonFiles/' + first3 + '.txt',
 				//url:domain + 'myphp.php',
 				dataType: 'json',
@@ -786,7 +788,7 @@ $(document).ready(function(){
 								st1= 'style=" font-size: 30px !important; "';
 								st2= 'style=" font-size: 26px !important; margin-right: 25px !important; line-height: 40px !important; "';
 							}
-							var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox" dir="rtl"><p class="lightdate1" '+st1+'><b class="textblue">' + datepretty + '</b></p><p class="lightdate2" '+st2+' dir="rtl">' +  tempstr1 + '<b class="textblue">' + top10[index-1][4] + '</b>' + tempstr2 +' <br><br></p>'];
+							var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox" dir="rtl"><p class="lightdate1" '+st1+'><b class="textblue">' + datepretty + '</b></p><p class="lightdate2" '+st2+' dir="rtl">' +  tempstr1 + '<b class="textblue">' + top10[index-1][4] + '</b>' + tempstr2 +' <a target="_blank" href="'+ data.objects[0].facebook_link +'" style="text-decoration:none; color:#2490f5">לפוסט</a><br><br></p>'];
 							outputarray.push(temporary);
 						}
 						if (FBapicounter == single.length){

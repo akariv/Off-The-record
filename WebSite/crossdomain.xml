@@ -2,4 +2,5 @@
 
 <cross-domain-policy>
 	<allow-access-from domain="*.hasadna.org.il"/>
+	<allow-access-from domain="*.calcalist.co.il/"/>
 </cross-domain-policy>

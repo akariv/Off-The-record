@@ -740,6 +740,7 @@ input:focus {
 	-webkit-filter: grayscale(40%);
 }
 #sortable1 li .borderbrown{
+	float:right;
 	border: none;
 	height: 0px;
 }
@@ -758,7 +759,7 @@ input:focus {
 #sortable1 li p{
 	margin-top: 47px;
 	float: right;
-	margin-right: 25px;
+	margin-right: 110px;
 	font-size: 40px;
 }
 #sortable1 li p a{ 

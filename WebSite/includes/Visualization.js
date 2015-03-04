@@ -82,6 +82,7 @@ $(document).on("click", '.searchB', function (obj) {
 		first3 = "2";
 	}
 	$.ajax({
+		//crossDomain: true,
 		url:domain + 'pythonFiles/' + first3 + '.txt',
 		//url:domain + 'myphp.php',
 		dataType: 'json',
@@ -200,6 +201,7 @@ function showTheWords(){
 	$(arrayofshit).each(function(i,v){
 		
 		$.ajax({
+			//crossDomain: true,
 			url: domain + 'WholeDates/'+ v.id +'.txt',
 			dataType: 'json',
 			type: 'get',
@@ -381,7 +383,7 @@ function buildGraph(){
 	//console.log(con);
 	$(poli_json.people).each(function(i,v){
 		var tempname = v.name.replace(/ /g, "<br>");
-		$(con).append('<li id="' + v.id + '" dir="rtl"><div class="borderbrown"><img src="https://graph.facebook.com/' + v.id + '/picture?type=large"></div><div class="bluetriangle"></div><div class="boxname">&ensp;' + v.name + '&ensp;</div><div class="boxname2">' + tempname + '</div><p></p></li >');
+		$(con).append('<li id="' + v.id + '" dir="rtl"><div class="borderbrown"><img src="https://graph.facebook.com/' + v.id + '/picture?type=large"></div><div class="bluetriangle"></div><div class="boxname">&ensp;' + v.name + '&ensp;</div><p></p><div class="boxname2">' + tempname + '</div></li >');
 	});
 	
 }
