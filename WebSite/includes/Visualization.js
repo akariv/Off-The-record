@@ -1,4 +1,4 @@
-var domain = "http://shenkar.html5-book.co.il/2014-2015/lab/Shura_Tahtona/includes/";
+var domain = "http://viz.calcalist.co.il/otr/data/";
 
 window.addEventListener("resize", resize);
 var _mobile = false;
@@ -82,11 +82,11 @@ $(document).on("click", '.searchB', function (obj) {
 		first3 = "2";
 	}
 	$.ajax({
-		//url:domain + 'json1/'+ value.id +'/' + first3 + '.txt',
-		url:domain + 'myphp.php',
+		url:domain + 'pythonFiles/' + first3 + '.txt',
+		//url:domain + 'myphp.php',
 		dataType: 'json',
 		type: 'get',
-		data:{word:first3},
+		//data:{word:first3},
 		success:  function(data){
 			//console.log(data);
 			for(var i=0; i<data.length; i++){
@@ -200,7 +200,7 @@ function showTheWords(){
 	$(arrayofshit).each(function(i,v){
 		
 		$.ajax({
-			url: domain + 'json2/'+ v.id +'.txt',
+			url: domain + 'WholeDates/'+ v.id +'.txt',
 			dataType: 'json',
 			type: 'get',
 			success:  function(data){

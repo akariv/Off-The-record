@@ -4,7 +4,7 @@
 
 
 
-var domain = "http://shenkar.html5-book.co.il/2014-2015/lab/Shura_Tahtona/includes/";
+var domain = "http://viz.calcalist.co.il/otr/data/";
 var json = {
 	"array":
 	[
@@ -514,10 +514,10 @@ $(document).ready(function(){
 	 
 	 
 	 
-	var temp2 = domain + 'json1/poli.json';
+
 	var start;
 	$.each(json.array, function(i,v){
-		var temp = domain + v.file;
+		var temp = domain + 'WCheckedList/' + v.file;
 		$.ajax({
 			url:temp,
 			dataType: 'json',
@@ -614,7 +614,7 @@ $(function(){
 				first3 = "2";
 			}
 			$.ajax({
-				url:domain + 'json3/' + first3 + '.txt',
+				url:domain + 'pythonFiles/' + first3 + '.txt',
 				//url:domain + 'myphp.php',
 				dataType: 'json',
 				type: 'get',
