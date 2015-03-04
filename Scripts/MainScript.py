@@ -450,10 +450,10 @@ for politic in politicsArr:
         allPostsIDsDict ={}
         buildString = createBuffer_Posts(url)
 
-        # getTargetIds(data["posts"]["paging"]["next"], list_NextUrls)
-        #
-        # for url in list_NextUrls:
-        #    buildString += createBuffer_Next(url)
+         getTargetIds(data["posts"]["paging"]["next"], list_NextUrls)
+        
+         for url in list_NextUrls:
+            buildString += createBuffer_Next(url)
 
         print "ALL ID's in the allPostIDsDict :  " , len(allPostsIDsDict.keys())
 
