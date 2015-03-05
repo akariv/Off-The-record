@@ -4,7 +4,7 @@
 
 
 
-var domain = "http://localhost/";
+var domain = "http://viz.calcalist.co.il/otr/data/";
 var json = {
 	"array":
 	[

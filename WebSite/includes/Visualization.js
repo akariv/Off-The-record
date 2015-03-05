@@ -1,4 +1,4 @@
-var domain = "http://localhost/";
+var domain = "http://viz.calcalist.co.il/otr/data/";
 
 window.addEventListener("resize", resize);
 var _mobile = false;
