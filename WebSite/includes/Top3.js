@@ -672,6 +672,9 @@ $(function(){
 				 error: function (xhr, ajaxOptions, thrownError) {
 			        console.log(xhr.status);
 			        console.log(thrownError);
+			        for(j=0; j<11; j++){
+			        	$('#ptop' + (j+1)).parent().css("display","none");
+			        } 
 					$(' #loading ').css('display','none');
 					$('.oops').css('display','block');
 				}
@@ -789,7 +792,7 @@ $(document).ready(function(){
 								st1= 'style=" font-size: 30px !important; "';
 								st2= 'style=" font-size: 26px !important; margin-right: 25px !important; line-height: 40px !important; "';
 							}
-							var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox" dir="rtl"><p class="lightdate1" '+st1+'><b class="textblue">' + datepretty + '</b></p><p class="lightdate2" '+st2+' dir="rtl">' +  tempstr1 + '<b class="textblue">' + top10[index-1][4] + '</b>' + tempstr2 +' <a target="_blank" href="'+ data.objects[0].facebook_link +'" style="text-decoration:none; color:#2490f5; font-size:16px;"> >></a><br><br></p>'];
+							var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox" dir="rtl"><p class="lightdate1" '+st1+'><b class="textblue">' + datepretty + '</b></p><p class="lightdate2" '+st2+' dir="rtl">' +  tempstr1 + '<b class="textblue">' + top10[index-1][4] + '</b>' + tempstr2 +' <a target="_blank" href="'+ data.objects[0].facebook_link +'" style="text-decoration:none; color:#2490f5;"> >></a><br><br></p>'];
 							outputarray.push(temporary);
 						}
 						if (FBapicounter == single.length){
