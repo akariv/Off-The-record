@@ -710,7 +710,8 @@ input:focus {
 	margin-right:30px; 
 }
 .featherlight-close-icon{
-	display:none;
+	margin-top:145px;
+	position:fixed !important;
 }
 
 

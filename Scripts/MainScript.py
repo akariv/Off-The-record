@@ -47,10 +47,12 @@ threeLetterDict = collections.defaultdict(list)
 
 dateDictForThreeLetter = {}
 
-avoidWords = [u'ישראל', u'כל', u'את', u'של', u'זה', u'על', u'או', u'גם', u'אז', u'רק', 'and', 'the', 'of', u'עד', u'אשר', u'כי', u'אם', \
+avoidWords = [u'אך',u'לי',u'כדי',u'מה',u'ישראל', u'כל', u'את', u'של', u'זה', u'על', u'או', u'גם', u'אז', u'רק', 'and', 'the', 'of', u'עד', u'אשר', u'כי', u'אם', \
 'in', 'to', 'a', 'that' ,'is', 'for', 'with', 'are', 'this', 'have', 'The', 'on', u'-', 'it', 'from', 'a' , \
-'at', 'as', u'היא', u'אני', u'לא', u'עם', u'הוא', u'•', u'(', u')', u' ', u'', u"" , "", " " \
-u':', u'"', u',' ,u'–', u'?', u'!', u'.', u'**', u'***', u'*']
+'at', 'as', u'היא', u'אני', u'לא', u'עם', u'הוא', u'•', u'(', u')', u' ', u'', u"" , "", " ", \
+u'בכל', u'כל', u'יש', u'לי', u'אך', u'היה', u'לו', u'לה', u'יש', u'שהוא', u"שלי", u'כך', \
+u':', u'"', u',' ,u'–', u'?', u'!', u'.', u'**', u'***', u'*', u'יש', u'מי', u'הם', u'כדי', u'מה',
+u'לנו', u'אבל', u'מול', u'אלא']
 
 militaryWords = u'צבא' , u'צה״ל', u'רמטכ״ל', u'נשק',u'אירן', u'אטום', u'ביטחון' ,\
  u'עזה' , u'ג׳האד', u'מלחמה', u'מבצע', u'סכסוך', u'איראני', u'הביטחון', u'חיזבאללה', u'דאעש', u'קבינט', \
@@ -151,18 +153,18 @@ def perDateCount(politicFileName):
 
             for word in tempWordsList:
                 # if not word in avoidWords:
-                # word = word.replace(u'.', u"")
-                # word = word.replace(u'!', u"")
-                # word = word.replace(u'?', u"")
-                # word = word.replace(u'-', u"")
-                # word = word.replace(u',', u"")
+                word = word.replace(u'.', u"")
+                word = word.replace(u'!', u"")
+                word = word.replace(u'?', u"")
+                word = word.replace(u'-', u"")
+                word = word.replace(u',', u"")
                 # # word = word.replace(u'"', u"")
-                # word = word.replace(u':', u"")
+                word = word.replace(u':', u"")
                 # word = word.replace(u'(', u"")
                 # word = word.replace(u')', u"")
-                # word = word.replace(u'*', u"")
+                word = word.replace(u'*', u"")
 
-                if not word in avoidWords:
+                if not word in avoidWords and not word in politicByWordsGut:
                      # print "accpted ", word
                      try:
                          wordIdDict[word].append(msg[1])
@@ -209,18 +211,18 @@ def AllwordCounter(wordsList, politicFileName):
         tempWordsList = valueDict[0].split()
         id = []
         for word in tempWordsList:
-            if not word in avoidWords:
-                # word = word.replace(u'.', u"")
-                # word = word.replace(u'!', u"")
-                # word = word.replace(u'?', u"")
-                # word = word.replace(u'-', u"")
-                # word = word.replace(u',', u"")
-                # word = word.replace(u'"', u"")
-                # word = word.replace(u':', u"")
-                # word = word.replace(u'(', u"")
-                # word = word.replace(u')', u"")
-                # word = word.replace(u'*', u"")
-                # word = word.replace(u'\'', u"")
+            word = word.replace(u'.', u"")
+            word = word.replace(u'!', u"")
+            word = word.replace(u'?', u"")
+            word = word.replace(u'-', u"")
+            word = word.replace(u',', u"")
+            # word = word.replace(u'"', u"")
+            word = word.replace(u':', u"")
+            word = word.replace(u'(', u"")
+            word = word.replace(u')', u"")
+            word = word.replace(u'*', u"")
+            # word = word.replace(u'\'', u"")
+            if not word in avoidWords and not word in politicByWordsGut:
                 wordCountPerPolitics[word] += 1
                 wordIdPerPolitics[word].append(keyDict)
                 dateDictForThreeLetter[word] = valueDict[1]
@@ -268,7 +270,6 @@ def CheckWordsAgainstThelist(wordsList, politicFileName):
         tempWordsList = valueDict.split()
 
         for checkWord in tempWordsList:
-            if not checkWord in avoidWords:
                 checkWord = checkWord.replace(u'.', u"")
                 checkWord = checkWord.replace(u'!', u"")
                 checkWord = checkWord.replace(u'?', u"")
@@ -279,7 +280,6 @@ def CheckWordsAgainstThelist(wordsList, politicFileName):
                 checkWord = checkWord.replace(u'(', u"")
                 checkWord = checkWord.replace(u')', u"")
                 checkWord = checkWord.replace(u'*', u"")
-
                 if checkWord in militaryWords:
                         countMilitaryWords+=1
                         listWordsMilitaryWords.append(checkWord)
@@ -298,12 +298,13 @@ def CheckWordsAgainstThelist(wordsList, politicFileName):
                             listWordsRahlanWords.append(checkWord)
                             # print checkWord, len(politicByWords)
 
-    politicDictMilitaryCount[politicFileName] = {"amount" : countMilitaryWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsMilitaryWords).most_common(3)}
-    politicDictSahbekimCount[politicFileName] = {"amount" : countSahbekimWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsSahbekimWords).most_common(3)}
-    politicDictNarcistCount[politicFileName] = {"amount" : countNacistWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsNacistWords).most_common(3)}
-    politicDictKalkalaCount[politicFileName] = {"amount" : countKalkalaWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsKalkalaWords).most_common(3)}
-    politicDictRahlanCount[politicFileName] =  {"amount" : countRahlanWords, "wordsArray" : Counter(listWordsRahlanWords).most_common(3)}
-    print politicFileName, countMilitaryWords, countMilitaryWords/float(politicDictWordsCount[politicFileName])
+    if politicDictWordsCount[politicFileName] > 35000 :
+        politicDictMilitaryCount[politicFileName] = {"amount" : countMilitaryWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsMilitaryWords).most_common(3)}
+        politicDictSahbekimCount[politicFileName] = {"amount" : countSahbekimWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsSahbekimWords).most_common(3)}
+        politicDictNarcistCount[politicFileName] = {"amount" : countNacistWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsNacistWords).most_common(3)}
+        politicDictKalkalaCount[politicFileName] = {"amount" : countKalkalaWords/float(politicDictWordsCount[politicFileName]), "wordsArray" : Counter(listWordsKalkalaWords).most_common(3)}
+        politicDictRahlanCount[politicFileName] =  {"amount" : countRahlanWords, "wordsArray" : Counter(listWordsRahlanWords).most_common(3)}
+        # print politicFileName, countMilitaryWords, countMilitaryWords/float(politicDictWordsCount[politicFileName])
 
     del tempWordsList[:]
     tempdict.clear()
@@ -389,6 +390,9 @@ def sortAndPrintKalkalaCount():
 
 def sortAndPrintWordCount():
     sorted_politicDictWordsCount = sorted(politicDictWordsCount.items(), key=operator.itemgetter(1), reverse=True)
+
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"wordsCountRecords_1.txt"), 'a') as outfile:
+         json.dump(sorted_politicDictWordsCount, outfile,indent=4)
 
     tempPrintJson ={}
 

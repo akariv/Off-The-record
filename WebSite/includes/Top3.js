@@ -4,7 +4,7 @@
 
 
 
-var domain = "http://viz.calcalist.co.il/otr/data";
+var domain = "http://localhost/";
 var json = {
 	"array":
 	[
@@ -789,7 +789,7 @@ $(document).ready(function(){
 								st1= 'style=" font-size: 30px !important; "';
 								st2= 'style=" font-size: 26px !important; margin-right: 25px !important; line-height: 40px !important; "';
 							}
-							var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox" dir="rtl"><p class="lightdate1" '+st1+'><b class="textblue">' + datepretty + '</b></p><p class="lightdate2" '+st2+' dir="rtl">' +  tempstr1 + '<b class="textblue">' + top10[index-1][4] + '</b>' + tempstr2 +' <a target="_blank" href="'+ data.objects[0].facebook_link +'" style="text-decoration:none; color:white; font-size:16px;">&emsp;לפוסט המלא</a><br><br></p>'];
+							var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox" dir="rtl"><p class="lightdate1" '+st1+'><b class="textblue">' + datepretty + '</b></p><p class="lightdate2" '+st2+' dir="rtl">' +  tempstr1 + '<b class="textblue">' + top10[index-1][4] + '</b>' + tempstr2 +' <a target="_blank" href="'+ data.objects[0].facebook_link +'" style="text-decoration:none; color:#2490f5; font-size:16px;"> >></a><br><br></p>'];
 							outputarray.push(temporary);
 						}
 						if (FBapicounter == single.length){
@@ -807,7 +807,7 @@ $(document).ready(function(){
 							});
 							
 							for (i=0; i<outputarray.length; i++){finaloutput = finaloutput + outputarray[i][3];} 
-							finaloutput = finaloutput + '<p class="lightdate2" dir="rtl" style="width:100%;margin-bottom:16px;margin-right:26px;"><span style="color:#2490F5;">המערכת סופרת מלים בסטטוסים של הפוליטיקאים שהועלו מאז שנת 2008. אנחנו מציגים כאן רק את התוצאות העדכניות</span></p>';
+							finaloutput = finaloutput + '<p class="lightdate2" dir="rtl" style="width:100%;margin-bottom:16px;margin-right:26px;"><span style="color:#2490F5;">כרגע המערכת סופרת מלים משנת 2009 אבל בשל מגבלות טכניות מציגה רק את 500 הסטטוסטים העדכניים לכל ח״כ. אנחנו עובדים על הרחבה של התצוגה גם לסטטוסים מוקדמים יותר.</span></p>';
 							$(' #loading ').css('display','none');
 							$.featherlight(finaloutput);
 							
