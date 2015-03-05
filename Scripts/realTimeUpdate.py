@@ -12,7 +12,7 @@ __author__ = 'AlexGruber'
 threeLetterWordsPath = 'testFolder'
 perDateCountPath = 'WholeDates'
 allWordsPath = 'wordAllCount'
-rootPath = "c:/"
+rootPath = "out"
 
 wordCountPerPolitics = collections.defaultdict(int)
 wordIdPerPolitics = collections.defaultdict(list)

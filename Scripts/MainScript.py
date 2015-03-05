@@ -11,9 +11,9 @@ __author__ = 'AlexGruber'
 
 perDateCountPath = 'WholeDates'
 allWordsPath = 'wordAllCount'
-threeLetterWordsPath = 'testFolder'
+threeLetterWordsPath = '../testFolder'
 listOfCheckedWordsPath = "WCheckedList"
-rootPath = "c:/"
+rootPath = "out"
 
 politicsFile = '\ThreeLetterWords.txt'
 
@@ -47,12 +47,19 @@ threeLetterDict = collections.defaultdict(list)
 
 dateDictForThreeLetter = {}
 
+<<<<<<< HEAD
 avoidWords = [u'אך',u'לי',u'כדי',u'מה',u'ישראל', u'כל', u'את', u'של', u'זה', u'על', u'או', u'גם', u'אז', u'רק', 'and', 'the', 'of', u'עד', u'אשר', u'כי', u'אם', \
 'in', 'to', 'a', 'that' ,'is', 'for', 'with', 'are', 'this', 'have', 'The', 'on', u'-', 'it', 'from', 'a' , \
 'at', 'as', u'היא', u'אני', u'לא', u'עם', u'הוא', u'•', u'(', u')', u' ', u'', u"" , "", " ", \
 u'בכל', u'כל', u'יש', u'לי', u'אך', u'היה', u'לו', u'לה', u'יש', u'שהוא', u"שלי", u'כך', \
 u':', u'"', u',' ,u'–', u'?', u'!', u'.', u'**', u'***', u'*', u'יש', u'מי', u'הם', u'כדי', u'מה',
 u'לנו', u'אבל', u'מול', u'אלא']
+=======
+avoidWords = [u'ישראל', u'כל', u'את', u'של', u'זה', u'על', u'או', u'גם', u'אז', u'רק', 'and', 'the', 'of', u'עד', u'אשר', u'כי', u'אם', \
+'in', 'to', 'w', 'that' ,'is', 'for', 'with', 'are', 'this', 'have', 'The', 'on', u'-', 'it', 'from', 'a' , \
+'at', 'as', u'היא', u'אני', u'לא', u'עם', u'הוא', u'•', u'(', u')', u' ', u'', u"" , "", " " \
+u':', u'"', u',' ,u'–', u'?', u'!', u'.', u'**', u'***', u'*']
+>>>>>>> a946b5bcc80edb31e9dc25a2ec2bca9ca32a74b7
 
 militaryWords = u'צבא' , u'צה״ל', u'רמטכ״ל', u'נשק',u'אירן', u'אטום', u'ביטחון' ,\
  u'עזה' , u'ג׳האד', u'מלחמה', u'מבצע', u'סכסוך', u'איראני', u'הביטחון', u'חיזבאללה', u'דאעש', u'קבינט', \
@@ -140,7 +147,7 @@ def perDateCount(politicFileName):
 
     tempJson = {"Dates" :{}}
     for date, msg in dateDict.iteritems() :
-        print date
+        #print date
         Constdate = date.split("T")[0].split('-')[0] + ":" + date.split("T")[0].split('-')[1]
         if runOnce == True:
             tempDate = Constdate
@@ -322,6 +329,7 @@ def splitAllWordsByThreeLetters(listOfThreeLetters, word, count, wordIds, folder
                tempDictJson[word[:3]].append([{"Word" : word ,"Amount" : str(count),"date" : date.split('+')[0], "Array_id" : ids}])
         except:
             print "Unexpected error:" , sys.exc_info()[0]
+            raise
     else:
         tempDictJson["2"].append([{"Word" : word ,"Amount" : str(count),"date" : date.split('+')[0], "Array_id" : ids}])
 
@@ -330,7 +338,7 @@ def printToJsonTempDict(tempDictJson, folderName):
         # print keyDict , valueDict
         newpath = os.path.join(rootPath,threeLetterWordsPath,folderName)
         if not os.path.exists(newpath): os.makedirs(newpath)
-        with open(os.path.join(rootPath, threeLetterWordsPath, folderName, keyDict + '.txt'), 'a') as outfile:
+        with open(os.path.join(rootPath, threeLetterWordsPath, folderName, keyDict + '.txt'), 'w') as outfile:
              json.dump(tempDictJson[keyDict], outfile, indent=4)
     tempDictJson.clear()
 
@@ -338,7 +346,7 @@ def sortAndPrintMilitaryCount():
 
     sorted_politicDictMilitaryCount = sorted(politicDictMilitaryCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords_1.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords_1.txt"), 'w') as outfile:
          json.dump(sorted_politicDictMilitaryCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -346,13 +354,13 @@ def sortAndPrintMilitaryCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictMilitaryCount[index][0]] = sorted_politicDictMilitaryCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "militaryCountRecords.txt"), 'w') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintSahbekimCount():
     sorted_politicDictSahbekimCount = sorted(politicDictSahbekimCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords_1.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords_1.txt"), 'w') as outfile:
         json.dump(sorted_politicDictSahbekimCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -360,7 +368,7 @@ def sortAndPrintSahbekimCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictSahbekimCount[index][0]] = sorted_politicDictSahbekimCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"SahbekimCountRecords.txt"), 'w') as outfile:
         json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintNarcistCount():
@@ -371,13 +379,13 @@ def sortAndPrintNarcistCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictNarcistCount[index][0]] = sorted_politicDictNarcistCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "narcistCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "narcistCountRecords.txt"), 'w') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintKalkalaCount():
     sorted_politicDictKalkalaCount = sorted(politicDictKalkalaCount.items(), key=operator.itemgetter(1), reverse=True)
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath,"kalkalaCountRecords_1.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath,"kalkalaCountRecords_1.txt"), 'w') as outfile:
          json.dump(sorted_politicDictKalkalaCount, outfile,indent=4)
 
     tempPrintJson ={}
@@ -385,7 +393,7 @@ def sortAndPrintKalkalaCount():
     for index in range(3):
         tempPrintJson[sorted_politicDictKalkalaCount[index][0]] = sorted_politicDictKalkalaCount[index][1]
 
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "kalkalaCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "kalkalaCountRecords.txt"), 'w') as outfile:
          json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintWordCount():
@@ -398,7 +406,7 @@ def sortAndPrintWordCount():
 
     for index in range(3):
         tempPrintJson[sorted_politicDictWordsCount[index][0]] = sorted_politicDictWordsCount[index][1]
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "wordsCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "wordsCountRecords.txt"), 'w') as outfile:
           json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 def sortAndPrintRahlanCount():
@@ -408,11 +416,11 @@ def sortAndPrintRahlanCount():
 
     for index in range(3):
         tempPrintJson[sorted_politicDictRahlanCount[index][0]] = sorted_politicDictRahlanCount[index][1]
-    with open(os.path.join(rootPath,listOfCheckedWordsPath, "rahlanCountRecords.txt"), 'a') as outfile:
+    with open(os.path.join(rootPath,listOfCheckedWordsPath, "rahlanCountRecords.txt"), 'w') as outfile:
           json.dump(sorted(tempPrintJson.items(), key=operator.itemgetter(1), reverse=True), outfile,indent=4)
 
 
-print os.path.dirname(os.path.abspath(__file__)) + '\potilics.txt'
+print os.path.dirname(os.path.abspath(__file__)) + '/potilics.txt'
 politicByWords=[]
 politicCheckListArray = []
 gutlist = []
@@ -459,8 +467,9 @@ for politic in politicsArr:
         except:
             # errorCount=
             print "Unexpected error:" , sys.exc_info()[0]
+            continue
 
-        print data["posts"]["paging"]["next"]
+        print "next:",data["posts"]["paging"]["next"]
         allPostsIDsDict ={}
         buildString = createBuffer_Posts(url)
 
@@ -478,8 +487,8 @@ for politic in politicsArr:
 
         politicCheckListArray=[]
         politicByWords=[]
-        del list_NextUrls[:]
-        del buildString[:]
+        list_NextUrls = []
+        buildString = []
     except:
         print politic
         print "Unexpected error:" , sys.exc_info()[0]
