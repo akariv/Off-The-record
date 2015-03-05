@@ -1,4 +1,4 @@
-var domain = "http://viz.calcalist.co.il/otr/data/";
+var domain = "http://viz.calcalist.co.il/otr/data";
 
 window.addEventListener("resize", resize);
 var _mobile = false;
@@ -498,7 +498,7 @@ function a_clicked(obj){
 										var tempstr2 = data.objects[0].content.substring(n+word.length,p+1);
 										var date = data.objects[0].published.substring(0,10);
 										var datepretty = date.substring(8,10) + "." + date.substring(5,7) + "." + date.substring(0,4);
-										var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox2" dir="rtl"><p class="lightdate3"><b class="textblue">' + datepretty + '</b></p><p class="lightdate4" dir="rtl">' +  tempstr1 + '<b class="textblue">' + word + '</b>' + tempstr2 +' <br><br></p>'];
+										var temporary = [date.substring(0,4),date.substring(5,7),date.substring(8,10),'<p class="textlightbox2" dir="rtl"><p class="lightdate3"><b class="textblue">' + datepretty + '</b></p><p class="lightdate4" dir="rtl">' +  tempstr1 + '<b class="textblue">' + word + '</b>' + tempstr2 +' <a target="_blank" href="'+ data.objects[0].facebook_link +'" style="text-decoration:none; color:white; font-size:14px;">&emsp;לפוסט המלא</a><br><br></p>'];
 										outputarray.push(temporary);
 									}
 									//console.log(FBapicounter + " " + times);
@@ -516,6 +516,7 @@ function a_clicked(obj){
 											
 										});
 										for (i=1; i<outputarray.length; i++){ finaloutput = finaloutput + outputarray[i][3];} 
+										finaloutput = finaloutput + '<p class="lightdate2" dir="rtl" style="width:100%;margin-bottom:16px;margin-right:26px;"><span style="color:#2490F5; font-size:14px;">כרגע המערכת סופרת מלים משנת 2009 אבל מראה סטטוסטים רק משנת 2012 ואילך בשל מגבלות טכניות. אנחנו עובדים על להרחיב את זה לשנים קודמות</span></p>';
 										//$(' #loading ').css('display','none');
 										//console.log(finaloutput);
 										$('.message').append(finaloutput);
