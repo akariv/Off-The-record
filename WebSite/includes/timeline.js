@@ -116,8 +116,8 @@ for (var i=0 ; i<8 ; i++){
 	var startline = start + ((recthmid+2) * (i+1)) - (recthmid/2);
 	temp = svg.append("line").attr("x1", 42).attr("y1", startline).attr("x2", 112).attr("y2", startline).attr("stroke", "#2e2e2f").attr("stroke-width", 1).attr("class", tempclass);
 	var starttext = startline +5;
-	//var temptext=tempclass + " +";
-	temp = svg.append("text").attr("x", 67).attr("y", starttext).attr("fill", "rgba(256,256,256,0.6)").text(tempclass).attr("font-size", 15).attr("style", "cursor: pointer;").attr("class", tempclass).on('click', function(d){
+	var temptext=tempclass + " +";
+	temp = svg.append("text").attr("x", 67).attr("y", starttext).attr("fill", "rgba(256,256,256,0.6)").text(temptext).attr("font-size", 15).attr("style", "cursor: pointer;").attr("class", tempclass).on('click', function(d){
 		var infoarray = $(' .info ').toArray();
 		for (i=0; i<infoarray.length; i++){
 			var zmani = $(infoarray[i]).get(0);
@@ -353,25 +353,27 @@ for (var i=0 ; i<8 ; i++){
 		}
 		showTheWords();
 	}).on("mouseover",function(d){
-		//console.log("hover!");
-		var satoom = $(this).text();
-		for(var i=0; i<yeararray.length; i++){
-			
-			if ((satoom == yeararray[i][3])&&(yeararray[i][2]==1)){
-				//console.log(satoom + " " + yeararray[i][3]);
-				d3.select(this).text(satoom + " -").attr("fill","#fe1e43");
-				break;
-				
-			}else{
-				d3.select(this).text(satoom + " +").attr("fill","#fe1e43");
-				
-			}
-		}
+		d3.select(this).attr("fill","#fe1e43");
+		// //console.log("hover!");
+		// var satoom = $(this).text();
+		// for(var i=0; i<yeararray.length; i++){
+// 			
+			// if ((satoom == yeararray[i][3])&&(yeararray[i][2]==1)){
+				// //console.log(satoom + " " + yeararray[i][3]);
+				// d3.select(this).text(satoom + " -").attr("fill","#fe1e43");
+				// break;
+// 				
+			// }else{
+				// d3.select(this).text(satoom + " +").attr("fill","#fe1e43");
+// 				
+			// }
+		// }
 		
 	}).on("mouseout",function(d){
-		var satoom = $(this).text();
-		satoom = satoom.substring(0,4);
-		d3.select(this).text(satoom).attr("fill","rgba(256,256,256,0.6)");
+		d3.select(this).attr("fill","rgba(256,256,256,0.6)");
+		// var satoom = $(this).text();
+		// satoom = satoom.substring(0,4);
+		// d3.select(this).text(satoom).attr("fill","rgba(256,256,256,0.6)");
 	});
 	
 }

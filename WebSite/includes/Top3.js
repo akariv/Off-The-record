@@ -651,6 +651,8 @@ $(function(){
 							$('#ptop' + (j+1)).parent().css("display","block");	
 							$('#ptop' + (j+1)).siblings(' p ').empty();
 							$('#ptop' + (j+1)).siblings(' p ').append('&ensp;' + top10[j][1] + '&ensp;');
+							$('#ptop' + (j+1)).siblings(' .circle ').empty();
+							$('#ptop' + (j+1)).siblings(' .circle ').append('<b>' + top10[j][0] + '</b>');
 							if(j>9){break;}	
 							
 							
@@ -721,7 +723,7 @@ $(document).ready(function(){
 		    if($.inArray(el, single) === -1) single.push(el);
 		});
 		//console.log(single);
-		finaloutput = finaloutput + '<p class="lightdate2" dir="rtl" style="width:100%;margin-bottom:16px;margin-right:26px;"><b class="textblue">נמצאו '+ single.length +' תוצאות:</b></p>';
+		finaloutput = finaloutput + '<p class="lightdate2" dir="rtl" style="width:100%;margin-bottom:16px;margin-right:26px;"><b class="textblue">נמצאו '+ top10[index-1][0] +' תוצאות:</b></p>';
 	
 		for (var k=0; k<single.length; k++){
 			$.ajax({
