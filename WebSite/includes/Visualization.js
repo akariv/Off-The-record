@@ -75,6 +75,9 @@ $(document).on("click", '.searchB', function (obj) {
 	var poli_name;
 	var poli_id;
 	searchword = $('#inpot input').val();
+	if (searchword[searchword.length-1] == " "){
+		searchword = searchword.substring(0,searchword.length-1);
+	}
 	var first3;
 	if (searchword.length > 2){
 		first3 = searchword.substring(0,3);
