@@ -516,7 +516,7 @@ function a_clicked(obj){
 											
 										});
 										for (i=1; i<outputarray.length; i++){ finaloutput = finaloutput + outputarray[i][3];} 
-										finaloutput = finaloutput + '<p class="lightdate2" dir="rtl" style="width:90%;margin-bottom:16px;margin-right:26px;"><span style="color:#2490F5; font-size:14px;">כרגע המערכת סופרת מלים משנת 2009 אבל בשל מגבלות טכניות מציגה רק את 500 הסטטוסטים העדכניים לכל ח״כ. אנחנו עובדים על הרחבה של התצוגה גם לסטטוסים מוקדמים יותר.</span></p>';
+										finaloutput = finaloutput + '<p class="lightdate2" dir="rtl" style="margin-bottom:16px;"><span style="color:#2490F5; font-size:14px;margin-right:26px;display:block">כרגע המערכת סופרת מלים משנת 2009 אבל בשל מגבלות טכניות מציגה רק את 500 הסטטוסטים העדכניים לכל ח״כ. אנחנו עובדים על הרחבה של התצוגה גם לסטטוסים מוקדמים יותר.</span></p>';
 										//$(' #loading ').css('display','none');
 										//console.log(finaloutput);
 										$('.message').append(finaloutput);
