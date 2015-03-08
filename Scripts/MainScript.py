@@ -55,6 +55,12 @@ u'בכל', u'כל', u'יש', u'לי', u'אך', u'היה', u'לו', u'לה', u'י
 u':', u'"', u',' ,u'–', u'?', u'!', u'.', u'**', u'***', u'*', u'יש', u'מי', u'הם', u'כדי', u'מה',
 u'לנו', u'אבל', u'מול', u'אלא']
 
+avoidWords2 = [u'אך',u'לי',u'כדי',u'מה', u'כל', u'את', u'של', u'זה', u'על', u'או', u'גם', u'אז', u'רק', 'and', 'the', 'of', u'עד', u'אשר', u'כי', u'אם', \
+'in', 'to', 'a', 'that' ,'is', 'for', 'with', 'are', 'this', 'have', 'The', 'on', u'-', 'it', 'from', 'a' , \
+'at', 'as', u'היא', u'אני', u'לא', u'עם', u'הוא', u'•', u'(', u')', u' ', u'', u"" , "", " ", \
+u'בכל', u'כל', u'יש', u'לי', u'אך', u'היה', u'לו', u'לה', u'יש', u'שהוא', u"שלי", u'כך', \
+u':', u'"', u',' ,u'–', u'?', u'!', u'.', u'**', u'***', u'*', u'יש', u'מי', u'הם', u'כדי', u'מה',
+u'לנו', u'אבל', u'מול', u'אלא']
 
 militaryWords = u'צבא' , u'צה״ל', u'רמטכ״ל', u'נשק',u'אירן', u'אטום', u'ביטחון' ,\
  u'עזה' , u'ג׳האד', u'מלחמה', u'מבצע', u'סכסוך', u'איראני', u'הביטחון', u'חיזבאללה', u'דאעש', u'קבינט', \
@@ -224,7 +230,7 @@ def AllwordCounter(wordsList, politicFileName):
             word = word.replace(u')', u"")
             word = word.replace(u'*', u"")
             # word = word.replace(u'\'', u"")
-            if not word in avoidWords and not word in politicByWordsGut:
+            if not word in avoidWords2 and not word in politicByWordsGut:
                 wordCountPerPolitics[word] += 1
                 wordIdPerPolitics[word].append(keyDict)
                 dateDictForThreeLetter[word] = valueDict[1]
