@@ -121,6 +121,8 @@ $(document).on("click", '.searchB', function (obj) {
 					$('#ptop' + (j+1)).parent().css("display","block");	
 					$('#ptop' + (j+1)).siblings(' p ').empty();
 					$('#ptop' + (j+1)).siblings(' p ').append('&ensp;' + top10[j][1] + '&ensp;');
+					$('#ptop' + (j+1)).siblings(' .circle ').empty();
+					$('#ptop' + (j+1)).siblings(' .circle ').append('<b>' + top10[j][0] + '</b>');
 					if(j>9){break;}	
 					
 					
@@ -142,6 +144,11 @@ $(document).on("click", '.searchB', function (obj) {
 		 error: function (xhr, ajaxOptions, thrownError) {
 	        console.log(xhr.status);
 	        console.log(thrownError);
+	         for(j=0; j<11; j++){
+	        	$('#ptop' + (j+1)).parent().css("display","none");
+	        } 
+			$(' #loading ').css('display','none');
+			$('.oops').css('display','block');
 	
 		}
 			
