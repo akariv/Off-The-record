@@ -10,7 +10,7 @@ import codecs
 __author__ = 'AlexGruber'
 
 word = "סתם";
-alpha = u"א", u"ב", u"ג", u"ד", u"ה", u"ו", u"ז", u"ח", u"ט", u"י", u"כ", u"ל", u"מ", u"נ", u"ס", u"ע", u"פ", u"צ", u"ק", u"ר", u"ש", u"ת", u"ץ", u"ך", u"ם", u"ן"
+alpha = u"א", u"ב", u"ג", u"ד", u"ה", u"ו", u"ז", u"ח", u"ט", u"י", u"כ", u"ל", u"מ", u"נ", u"ס", u"ע", u"פ", u"צ", u"ק", u"ר", u"ש", u"ת", u"ץ",,u"ף" u"ך", u"ם", u"ן"
 path = "../testFolder"
 mergedJspnPath= "pythonfiles"
 rootPath = "out"
