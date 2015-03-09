@@ -458,6 +458,16 @@ for politic in politicsArr:
             politicCheckListArray.append(data2["name"].split())
             for words in politicCheckListArray:
                 for word in words:
+                    word = word.replace(u'.', u"")
+                    word = word.replace(u'!', u"")
+                    word = word.replace(u'?', u"")
+                    word = word.replace(u'-', u"")
+                    word = word.replace(u',', u"")
+                    word = word.replace(u'"', u"")
+                    word = word.replace(u':', u"")
+                    word = word.replace(u'(', u"")
+                    word = word.replace(u')', u"")
+                    word = word.replace(u'*', u"")
                     politicByWords.append(word)
                     # print word, len(politicByWords)
         except:
