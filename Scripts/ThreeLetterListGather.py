@@ -19,12 +19,12 @@ poli = [line.strip() for line in open(os.path.join(os.path.dirname(os.path.abspa
 
 first = True
 
-existing_files = set(os.popen('find testFolder -name *.txt').read().split())
+existing_files = set(os.popen(r'find testFolder -name \*.txt').read().decode('utf8').split())
 
 
 for num in range(0,22):
     for num2 in range(0,22):
-        for num3 in range(0, 26):
+        for num3 in range(0, 27):
             word=""
             word = alpha[num] + alpha[num2] + alpha[num3]
             if first:
@@ -39,7 +39,7 @@ for num in range(0,22):
             for i in range(0, len(poli)):
                 temppath = os.path.join(path, poli[i], word + ".txt")
                 if temppath in existing_files:
-                    print temppath
+                    #print temppath
                     if count == 0 :
                         fileOpenWrite.write("{\"id\":\"" + poli[i] + "\",\"resarr\":")
                     else:
